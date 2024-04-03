@@ -5,7 +5,7 @@ import LoginScreen from "./screens/LoginScreen"; // Import your LoginScreen comp
 import RegisterScreen from "./screens/RegisterScreen";
 import BottomNavigationBar from "./components/BottomNavigationBar";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+import CowDetails from './screens/CowDetails';
 const Stack = createNativeStackNavigator();
 
 function SplashScreen({ navigation }) {
@@ -34,6 +34,7 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Home" component={BottomNavigationBar} />
+        <Stack.Screen name="CowDetails" component={CowDetails} />
         {/* <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} /> */}
       </Stack.Navigator>
