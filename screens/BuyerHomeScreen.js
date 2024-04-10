@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  FlatList,
-  Image,
-  TouchableOpacity,
-} from "react-native";
-
+import { StyleSheet, View, Text, FlatList, Image, TouchableOpacity, Dimensions } from 'react-native'
+const { width } = Dimensions.get('window');
+const cardWidth = width / 2 - 20; // Adjusted card width
 const BuyerHomeScreen = ({ navigation }) => {
   const [cows, setCows] = useState([]);
 
@@ -64,22 +58,16 @@ const BuyerHomeScreen = ({ navigation }) => {
   ];
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity
-      style={styles.card}
-      onPress={() => navigation.navigate("CowDetails", { cow: item })}
-    >
-      <Image
-        source={require("../assets/item_images/gayal1.jpg")}
-        style={styles.image}
-      />
+    <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('CowDetails', { cow: item })}>
+      <Image source={item.imageUrl} style={styles.image} />
       <View style={styles.cardContent}>
         <Text style={styles.name}>{item.name}</Text>
-        <Text style={styles.price}>Rs.{item.price}</Text>
-        {/* Example price, replace with actual data */}
-        <Text style={styles.description}>
-        {item.description}
-        </Text>
-        {/* Example description, replace with actual data */}
+        <Text style={styles.age}>{item.age} years</Text>
+        <Text style={styles.vendor}>{item.vendor}</Text>
+        <View style={styles.price}>
+          <Text style={styles.priceAmount}>Rs {item.price}</Text>
+        </View>
+        
       </View>
     </TouchableOpacity>
   );
@@ -87,9 +75,11 @@ const BuyerHomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={cowsData}
+        data={cows}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
+        numColumns={2}
+        contentContainerStyle={styles.flatListContent}
       />
     </View>
   );
@@ -98,43 +88,73 @@ const BuyerHomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    backgroundColor: '#f2f2f2',
   },
   card: {
-    flexDirection: "row",
-    borderWidth: 1,
-    borderColor: "#ccc",
+    position: 'relative',
+    flexDirection: 'column',
+    margin: 5,
     borderRadius: 5,
-    marginBottom: 10,
-    padding: 10,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    width: cardWidth,
   },
   image: {
-    width: 100,
-    height: 100,
-    marginRight: 10,
-    borderRadius: 5,
+    width: '100%',
+    height: 200,
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+    resizeMode: 'cover',
   },
   cardContent: {
-    // flex: 1,
-    flexDirection:"column",
-    justifyContent: "center",
+    padding: 10,
   },
   name: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 5,
+    fontSize: 16,
+    fontFamily: 'Arial',
+    color: '#111',
+  },
+  age: {
+    fontSize: 12, 
+    fontFamily: 'Arial',
+    color: '#555',
+    marginTop: 3,
+    marginBottom: 3,  
   },
   price: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "green",
-    marginBottom: 5,
+    marginTop: 3,
+    marginBottom: 3,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    fontWeight: 'bold',
   },
-  description: {
-    fontSize: 14,
-    width: 200,
-    color: "#666",
+  priceText: {
+    fontSize: 12,
+    marginTop: 3,
+    marginBottom: 3,
+    fontFamily: 'Arial',
+    color: '#111',
+  },
+  priceAmount: {
+    fontSize: 18,
+    fontFamily: 'Arial',
+    color: '#111',
+    fontWeight: 'bold',
+  },
+  vendor: {
+    fontSize: 12,
+    fontFamily: 'Arial',
+    color: '#555',
+    marginTop: 5,
+  },
+  flatListContent: {
+    alignItems: 'center',
   },
 });
 

@@ -24,7 +24,7 @@ const RegisterScreen = ({ navigation }) => {
     console.log(name, email, password, phone, address, type);
     return new Promise((resolve, reject) => {
       axios
-        .post(`http://10.10.18.178:5000/apis/users/signup`, {
+        .post(`http://10.10.16.140:5000/apis/users/signup`, {
           name: name,
           email: email,
           password: password,
@@ -55,9 +55,9 @@ const RegisterScreen = ({ navigation }) => {
       <Text style={styles.title}>Welcome to Mithun App</Text>
       <Text style={styles.subtitle}>Please Register into Mithun App</Text>
       <Picker
-        selectedValue={userType}
+        selectedValue={type}
         style={styles.input}
-        onValueChange={(itemValue, itemIndex) => setUserType(itemValue)}>
+        onValueChange={(itemValue, itemIndex) => setType(itemValue)}>
         <Picker.Item label="Customer" value="customer" />
         <Picker.Item label="Vendor" value="vendor" />
       </Picker>

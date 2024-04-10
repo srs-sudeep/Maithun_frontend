@@ -5,15 +5,13 @@ import LoginScreen from "./screens/LoginScreen";
 import BuyerProfileScreen from "./screens/BuyerProfileScreen";
 import SellerProfileScreen from "./screens/SellerProfileScreen";
 import RegisterScreen from "./screens/RegisterScreen";
-import HomeScreen from "./screens/BuyerHomeScreen";  
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer'
 import CowDetails from "./screens/CowDetails";
 import SellerHomeScreen from './screens/SellerHomeScreen';
+import BuyerHomeScreen from './screens/BuyerHomeScreen';``
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
-import axios from "axios";
-import navigation from "@react-navigation/native";
 import handleLogout from "./components/Logout";
 // const handleLogout = async () => {
 //   try {
@@ -50,7 +48,7 @@ const AuthStack = () => (
 
 const BuyerAppStack = () => (
   <Drawer.Navigator initialRouteName="BuyerHomeScreen">
-    <Drawer.Screen name="BuyerHomeScreen" component={HomeScreen} />
+    <Drawer.Screen name="BuyerHomeScreen" component={BuyerHomeScreen} />
     <Drawer.Screen name="BuyerProfileScreen" component={BuyerProfileScreen} />
   </Drawer.Navigator>
 );

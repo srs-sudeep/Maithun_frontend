@@ -20,7 +20,7 @@ const LoginScreen = () => {
     console.log(email,password);
     try {
       const response = await axios.post(
-        "http://10.10.18.178:5000/apis/users/login",
+        "http://10.10.16.140:5000/apis/users/login",
         { email, password }
       );
       if (response.data.success) {
@@ -53,8 +53,8 @@ const LoginScreen = () => {
         <TextInput
           style={styles.input}
           placeholder="Enter your username"
-          value={username}
-          onChangeText={setUsername}
+          value={email}
+          onChangeText={setEmail}
           autoCapitalize="none"
         />
         <Text style={styles.label}>Password</Text>
