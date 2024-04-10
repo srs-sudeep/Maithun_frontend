@@ -48,10 +48,10 @@ const AuthStack = () => (
 
 const BuyerAppStack = () => (
   <Drawer.Navigator initialRouteName="BuyerHomeScreen">
-    <Drawer.Screen name="BuyerHomeScreen" component={BuyerHomeScreen} />
-    <Drawer.Screen name="BuyerProfileScreen" component={BuyerProfileScreen} />
+    <Drawer.Screen name="Buy Cows" component={BuyerHomeScreen} />
+    <Drawer.Screen name="Buyer Profile" component={BuyerProfileScreen} />
   </Drawer.Navigator>
-);
+);  
 const SellerAppStack = ({logout}) => (
   <Drawer.Navigator initialRouteName="SellerHomeScreen" drawerContent={props => {
     return (

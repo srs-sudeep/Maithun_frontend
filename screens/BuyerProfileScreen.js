@@ -12,10 +12,15 @@ const BuyerProfileScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Name: {userData.name}</Text>
-      <Text style={styles.label}>Email: {userData.email}</Text>
-      <Text style={styles.label}>Phone: {userData.phone}</Text>
-      <Text style={styles.label}>Address: {userData.address}</Text>
+      <View style={styles.profileCard}>
+        <Text style={styles.name}>{userData.name}</Text>
+        <Text style={[styles.label, styles.bold]}>Email:</Text>
+        <Text style={styles.labelValue}>{userData.email}</Text>
+        <Text style={[styles.label, styles.bold]}>Phone:</Text>
+        <Text style={styles.labelValue}>{userData.phone}</Text>
+        <Text style={[styles.label, styles.bold]}>Address:</Text>
+        <Text style={styles.labelValue}>{userData.address}</Text>
+      </View>
     </View>
   );
 };
@@ -23,12 +28,32 @@ const BuyerProfileScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    paddingTop: 20, // To position the card at the top
+    paddingHorizontal: 20, // Padding for the sides
+    backgroundColor: '#f0f0f0', // Background color for the screen
+  },
+  profileCard: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 20,
+    width: '100%', // Cover the entire screen horizontally
+    elevation: 3,
+  },
+  name: {
+    fontSize: 27,
+    fontWeight: 'bold',
+    marginBottom: 20,
   },
   label: {
-    fontSize: 18,
-    marginBottom: 10,
+    fontSize: 15,
+    marginBottom: 1,
+  },
+  labelValue: {
+    fontSize: 15,
+    marginBottom: 15,
+  },
+  bold: {
+    fontWeight: 'bold',
   },
 });
 

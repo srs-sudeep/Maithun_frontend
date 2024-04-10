@@ -1,12 +1,24 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, Linking } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer'
+const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+
+const Cow_DetailStack = () => (
+  <Drawer.Navigator initialRouteName="CowDetails">
+    <Drawer.Screen name="Buy Cows" component={BuyerHomeScreen} />
+    <Drawer.Screen name="Buyer Profile" component={BuyerProfileScreen} />
+  </Drawer.Navigator>
+);
 
 const CowDetails = ({ route }) => {
   const { cow } = route.params;
 
   const handleWhatsApp = () => {
-    const phoneNumber = `${cow.phoneNo}`; // Replace with the phone number you want to message
-    const message = `Hello, Im interested in ${cow.name}.`; // Customize the message as needed
+    const phoneNumber = `${cow.phoneNo}`;
+    const message = `Hello, I'm interested in ${cow.name}.`;
     const url = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
 
     Linking.openURL(url)
@@ -24,10 +36,10 @@ const CowDetails = ({ route }) => {
         <Image source={require("../assets/item_images/gayal1.jpg")} style={styles.image} />
         <View style={styles.details}>
           <Text style={styles.name}>{cow.name}</Text>
-          <Text style={styles.price}>Price: Rs.{cow.price}</Text>
+          <Text style={styles.price}>Rs. {cow.price}</Text>
           <Text style={styles.description}>{cow.description}</Text>
-          <Text style={styles.vendor}>Vendor : {cow.vendor}</Text>
-          <Text style={styles.contact}>Contact : {cow.phoneNo}</Text>
+          <Text style={styles.vendor}>Vendor: {cow.vendor}</Text>
+          <Text style={styles.contact}>Contact: {cow.phoneNo}</Text>
         </View>
       </View>
       <TouchableOpacity style={styles.whatsappButton} onPress={handleWhatsApp}>
@@ -44,8 +56,6 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    
-
   },
   card: {
     backgroundColor: '#fff',
@@ -53,15 +63,16 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 100,
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
     marginBottom: 20,
+    width: '100%', // Make the card cover the entire width
   },
   image: {
-    width: '100',
+    width: '100%',
     height: 200,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
@@ -79,17 +90,20 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'green',
     marginBottom: 10,
+    fontWeight: 'bold',
   },
   description: {
     fontSize: 16,
     marginBottom: 10,
   },
   vendor: {
-    fontSize: 16,
+    fontSize: 14,
     marginBottom: 5,
+    color: 'grey',
   },
   contact: {
-    fontSize: 16,
+    fontSize: 14,
+    color: 'grey',
   },
   whatsappButton: {
     backgroundColor: '#25D366',
@@ -97,7 +111,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     borderRadius: 30,
     alignItems: 'center',
-    flexDirection: 'row', // Align image and text horizontally
+    flexDirection: 'row',
   },
   whatsappLogo: {
     width: 20,

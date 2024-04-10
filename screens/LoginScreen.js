@@ -17,10 +17,10 @@ const LoginScreen = () => {
   const navigation = useNavigation();
 
   const handleLogin = async () => {
-    console.log(email,password);
+    console.log(email, password);
     try {
       const response = await axios.post(
-        "http://10.10.16.140:5000/apis/users/login",
+        "http://10.10.96.153:5000/apis/users/login",
         { email, password }
       );
       if (response.data.success) {
@@ -70,7 +70,10 @@ const LoginScreen = () => {
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-        <Text style={styles.registerText}>Not registered? <Text style={styles.registerLink}>Register Now</Text></Text>
+        <Text style={styles.registerText}>
+          Not registered?{" "}
+          <Text style={styles.registerLink}>Register Now</Text>
+        </Text>
       </TouchableOpacity>
     </View>
   );
