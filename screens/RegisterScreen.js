@@ -1,44 +1,53 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, Image, Alert } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
-import { useNavigation } from '@react-navigation/native';
-import axios from 'axios';
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  Alert,
+} from "react-native";
+import { Picker } from "@react-native-picker/picker";
+import axios from "axios";
 
-const RegisterScreen = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
-  const [password, setPassword] = useState('');
-  const [userType, setUserType] = useState('customer');
-  const navigation = useNavigation();
 
-  const handleRegister = () => {
-    console.log(name, email, password, phone, address, userType);
-    axios
-      .post('http://localhost:5000/apis/users/signup', {
-        name: name,
-        email: email,
-        password: password,
-        phone: phone,
-        address: address,
-        userType: userType,
-      })
-      .then(function (response) {
-        Alert.alert(
-          'Registration Successful',
-          'You have successfully registered!',
-          [{ text: 'OK', onPress: () => navigation.navigate('Login') }]
-        );
-      })
-      .catch(function (error) {
-        console.error('Registration Error:', error);
-        Alert.alert(
-          'Registration Failed',
-          'An error occurred while registering. Please try again later.'
-        );
-      });
-  };
+const RegisterScreen = ({ navigation }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [type,setType] = useState("customer");
+
+  function handleRegister() {
+    console.log(name, email, password, phone, address, type);
+    return new Promise((resolve, reject) => {
+      axios
+        .post(`http://10.10.18.178:5000/apis/users/signup`, {
+          name: name,
+          email: email,
+          password: password,
+          phone: phone,
+          userLocality: address,
+          isSeller: type === "vendor",
+        })
+        .then(function (response) {
+          Alert.alert(
+            "Registration Successful",
+            "You have successfully registered!",
+            [{ text: "OK", onPress: () => navigation.navigate("Login") }]
+          );
+        })
+        .catch(function (error) {
+          console.error("Registration Error:", error);
+          Alert.alert(
+            "Registration Failed",
+            "An error occurred while registering. Please try again later."
+          );
+        });
+    });
+  }
 
   return (
     <View style={styles.container}>

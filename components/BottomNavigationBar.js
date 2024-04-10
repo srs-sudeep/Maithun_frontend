@@ -1,8 +1,8 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import HomeScreen from "../screens/HomeScreen";
-import ProfileScreen from "../screens/ProfileScreen";
+import HomeScreen from "../screens/BuyerHomeScreen";
+import ProfileScreen from "../screens/BuyerProfileScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -17,7 +17,7 @@ const BottomNavigationBar = () => {
       }}
     >
       <Tab.Screen
-        name="Home"
+        name="BuyerHome"
         component={HomeScreen}
         options={{
           tabBarLabel: "Home",

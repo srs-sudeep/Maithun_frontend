@@ -1,23 +1,51 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  Alert,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 
 const LoginScreen = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigation = useNavigation();
 
-  const handleLogin = () => {
-    // Implement your login logic here
-    // For simplicity, I'm just navigating to the HomeScreen if username and password are not empty
-    if (username !== '' && password !== '') {
-      navigation.navigate('Home');
+  const handleLogin = async () => {
+    console.log(email,password);
+    try {
+      const response = await axios.post(
+        "http://10.10.18.178:5000/apis/users/login",
+        { email, password }
+      );
+      if (response.data.success) {
+        const user = response.data.user;
+        if (!user.isSeller) {
+          navigation.navigate("BuyerApp");
+        } else {
+          navigation.navigate("SellerApp");
+        }
+      } else {
+        Alert.alert("Login Failed", response.data.message);
+      }
+    } catch (error) {
+      // Handle API call errors
+      console.error("Error during login:", error);
+      Alert.alert(
+        "Error",
+        "An error occurred during login. Please try again later."
+      );
     }
   };
 
   return (
     <View style={styles.container}>
-      <Image source={require('../assets/logo.jpg')} style={styles.logo} />
+      <Image source={require("../assets/logo.jpg")} style={styles.logo} />
       <Text style={styles.title}>Welcome to Mithun App</Text>
       <Text style={styles.subtitle}>Login to Continue</Text>
       <View style={styles.inputContainer}>
@@ -51,20 +79,20 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     paddingHorizontal: 20,
     backgroundColor: '#ffffff',
   },
   logo: {
     width: 150,
     height: 150,
-    resizeMode: 'contain',
+    resizeMode: "contain",
     marginBottom: 20,
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 10,
     textAlign: 'center',
     color: '#333333',
@@ -86,7 +114,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   input: {
-    width: '100%',
+    width: "100%",
     height: 40,
     borderColor: '#cccccc',
     borderWidth: 1,
@@ -106,7 +134,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#ffffff',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   registerText: {
     marginTop: 20,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-const ProfileScreen = () => {
+const SellerProfileScreen = () => {
   // Random user data
   const userData = {
     name: 'Sudeep',
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfileScreen;
+export default SellerProfileScreen;

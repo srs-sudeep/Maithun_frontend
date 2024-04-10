@@ -6,7 +6,7 @@ const CowDetails = ({ route }) => {
 
   const handleWhatsApp = () => {
     const phoneNumber = `${cow.phoneNo}`; // Replace with the phone number you want to message
-    const message = `Hello, I'm interested in ${cow.name}.`; // Customize the message as needed
+    const message = `Hello, Im interested in ${cow.name}.`; // Customize the message as needed
     const url = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
 
     Linking.openURL(url)
@@ -21,10 +21,10 @@ const CowDetails = ({ route }) => {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        <Image source={{ uri: cow.imageUrl }} style={styles.image} />
+        <Image source={require("../assets/item_images/gayal1.jpg")} style={styles.image} />
         <View style={styles.details}>
           <Text style={styles.name}>{cow.name}</Text>
-          <Text style={styles.price}>Price: ${cow.price}</Text>
+          <Text style={styles.price}>Price: Rs.{cow.price}</Text>
           <Text style={styles.description}>{cow.description}</Text>
           <Text style={styles.vendor}>Vendor : {cow.vendor}</Text>
           <Text style={styles.contact}>Contact : {cow.phoneNo}</Text>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   image: {
-    width: '100%',
+    width: '100',
     height: 200,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
