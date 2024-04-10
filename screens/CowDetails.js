@@ -44,6 +44,8 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
+    
+
   },
   card: {
     backgroundColor: '#fff',
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 100,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
