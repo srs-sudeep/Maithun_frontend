@@ -20,7 +20,7 @@ const LoginScreen = () => {
     console.log(email, password);
     try {
       const response = await axios.post(
-        "http://10.10.18.76:5000/apis/users/login",
+        "http://192.168.124.140:5000/apis/users/login",
         { email, password }
       );
       if (response.data.success) {
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: '100%',
-    backgroundColor: '#007bff',
+    backgroundColor: '#00cc7a',
     borderRadius: 5,
     paddingVertical: 12,
     alignItems: 'center',

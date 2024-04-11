@@ -76,10 +76,11 @@ const styles = StyleSheet.create({
   },
   header: {
     width: "100%",
-    backgroundColor: "#25D366",
-    paddingVertical: 15,
+    backgroundColor: "#00cc7a",
+    paddingVertical: 8,
     alignItems: "center",
-    marginBottom: 20,
+    borderTopLeftRadius:15,
+    borderTopRightRadius:15,
   },
   headerText: {
     color: "#FFF",
@@ -91,7 +92,8 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: "#fff",
-    borderRadius: 10,
+    borderBottomLeftRadius:15,
+    borderBottomRightRadius:15,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -106,8 +108,6 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 200,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
     resizeMode: "cover",
   },
   details: {
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     color: "grey",
   },
   whatsappButton: {
-    backgroundColor: "#25D366",
+    backgroundColor: "#00cc7a",
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 30,

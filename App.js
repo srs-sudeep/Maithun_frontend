@@ -16,7 +16,9 @@ import { useNavigation } from "@react-navigation/native";
 import CowDetails from "./screens/CowDetails";
 import SellerHomeScreen from "./screens/SellerHomeScreen";
 import BuyerHomeScreen from "./screens/BuyerHomeScreen";
+import AddCow from "./screens/AddCow"; // Import AddCow Screen
 import axios from "axios";
+
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -34,6 +36,7 @@ function SplashScreen({ navigation }) {
     </View>
   );
 }
+
 const AuthStack = () => (
   <Stack.Navigator initialRouteName="Splash">
     <Stack.Screen
@@ -71,12 +74,10 @@ const BuyerAppStack = () => (
       options={{
         title: "My home",
         headerStyle: {
-          backgroundColor: "#25D366",
+          backgroundColor: "#00cc7a",
         },
-        headerTintColor: "#fff",
-        headerTitleStyle: {
-          fontWeight: "bold",
-        },
+        headerTintColor: "white",
+        headerTitleStyle: {},
       }}
       component={BuyerHomeScreen}
     />
@@ -85,18 +86,17 @@ const BuyerAppStack = () => (
       options={{
         title: "My Profile",
         headerStyle: {
-          backgroundColor: "#25D366",
+          backgroundColor: "#00cc7a",
         },
         headerTintColor: "#fff",
-        headerTitleStyle: {
-          fontWeight: "bold",
-        },
+        headerTitleStyle: {},
       }}
       component={BuyerProfileScreen}
     />
   </Drawer.Navigator>
 );
-const SellerAppStack = ({ logout }) => (
+
+const SellerAppStack = ({ navigation }) => ( // Pass navigation prop
   <Drawer.Navigator
     initialRouteName="SellerHomeScreen"
     drawerContent={(props) => {
@@ -108,8 +108,42 @@ const SellerAppStack = ({ logout }) => (
       );
     }}
   >
-    <Drawer.Screen name="SellerHomeScreen" component={SellerHomeScreen} />
-    <Drawer.Screen name="SellerProfileScreen" component={SellerProfileScreen} />
+    <Drawer.Screen
+      name="SellerHomeScreen"
+      options={{
+        title: "Seller Screen",
+        headerStyle: {
+          backgroundColor: "#00cc7a",
+        },
+        headerTintColor: "white",
+        headerTitleStyle: {},
+      }}
+      component={SellerHomeScreen}
+    />
+    <Drawer.Screen
+      name="SellerProfileScreen"
+      options={{
+        title: "My Profile",
+        headerStyle: {
+          backgroundColor: "#00cc7a",
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {},
+      }}
+      component={SellerProfileScreen}
+    />
+    <Drawer.Screen
+      name="AddCow"
+      component={AddCow}
+      options={{
+        title: "Add Cow",
+        headerStyle: {
+          backgroundColor: "#00cc7a",
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {},
+      }}
+    />
   </Drawer.Navigator>
 );
 
@@ -128,10 +162,14 @@ const handleLogout = async () => {
     console.error("Error logging out:", error);
   }
 };
+
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Auth" options={{ headerShown: false }}>
+      <Stack.Navigator
+        initialRouteName="Auth"
+        options={{ headerShown: false }}
+      >
         <Stack.Screen
           name="Auth"
           component={AuthStack}
@@ -153,12 +191,10 @@ export default function App() {
           options={{
             title: "Cow Details",
             headerStyle: {
-              backgroundColor: "#25D366",
+              backgroundColor: "#00cc7a",
             },
             headerTintColor: "#fff",
-            headerTitleStyle: {
-              fontWeight: "bold",
-            },
+            headerTitleStyle: {},
           }}
         />
       </Stack.Navigator>

@@ -55,7 +55,7 @@ const BuyerHomeScreen = ({ navigation }) => {
   ];
   const getCows = async()=> {
     try {
-      const response = await axios.get("http://10.10.18.76:5000/apis/cows");
+      const response = await axios.get("http://192.168.124.140:5000/apis/cows");
       const data = await response.data;
       setCows(data);
     } catch (error) {
