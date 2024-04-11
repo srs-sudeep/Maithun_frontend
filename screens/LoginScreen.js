@@ -20,7 +20,7 @@ const LoginScreen = () => {
     console.log(email, password);
     try {
       const response = await axios.post(
-        "http://10.10.96.153:5000/apis/users/login",
+        "http://10.10.18.76:5000/apis/users/login",
         { email, password }
       );
       if (response.data.success) {
